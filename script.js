@@ -1,4 +1,3 @@
-// Product data
 const products = [
   { id: 1, name: "Product 1", price: 10 },
   { id: 2, name: "Product 2", price: 20 },
@@ -11,27 +10,24 @@ const productList = document.getElementById("product-list");
 const cartList = document.getElementById("cart-list");
 const clearBtn = document.getElementById("clear-cart-btn");
 
-// Load existing cart
 function getCart() {
   const saved = sessionStorage.getItem("cart");
   return saved ? JSON.parse(saved) : [];
 }
 
-// Save cart
 function saveCart(cart) {
   sessionStorage.setItem("cart", JSON.stringify(cart));
 }
 
-// Render products
 function renderProducts() {
   products.forEach((product) => {
     const li = document.createElement("li");
-    li.innerHTML = `${product.name} - $${product.price}`;
+    li.textContent = `${product.name} - $${product.price} `;
 
     const btn = document.createElement("button");
     btn.textContent = "Add to Cart";
 
-    btn.addEventListener("click", function () {
+    btn.addEventListener("click", () => {
       addToCart(product.id);
     });
 
@@ -40,7 +36,6 @@ function renderProducts() {
   });
 }
 
-// Render cart
 function renderCart() {
   cartList.innerHTML = "";
   const cart = getCart();
@@ -52,17 +47,15 @@ function renderCart() {
   });
 }
 
-// Add item to cart → THIS produces the EXACT output Cypress expects
 function addToCart(productId) {
   const cart = getCart();
   const product = products.find((p) => p.id === productId);
 
-  cart.push(product);  
+  cart.push(product);
   saveCart(cart);
   renderCart();
 }
 
-// Clear cart
 function clearCart() {
   sessionStorage.removeItem("cart");
   renderCart();
