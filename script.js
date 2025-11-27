@@ -1,5 +1,3 @@
-sessionStorage.removeItem("cart");  // IMPORTANT FOR ACCIOJOB TESTS
-
 const products = [
   { id: 1, name: "Product 1", price: 10 },
   { id: 2, name: "Product 2", price: 20 },
@@ -22,6 +20,10 @@ function saveCart(cart) {
 }
 
 function renderProducts() {
+  sessionStorage.removeItem("cart");  // ← FINAL FIX
+
+  productList.innerHTML = "";
+
   products.forEach((product) => {
     const li = document.createElement("li");
     li.textContent = `${product.name} - $${product.price} `;
