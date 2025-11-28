@@ -11,12 +11,12 @@ const cartList = document.getElementById("cart-list");
 const clearBtn = document.getElementById("clear-cart-btn");
 
 function getCart() {
-  const saved = JSON.parse(sessionStorage.getItem("cart") ) || [];
-  return saved ;
+  const saved = sessionStorage.getItem("cart") ;
+  return saved ? JSON.parse(saved) : [] ;
 }
 
 function saveCart(cart) {
-  sessionStorage.setItem("cart", JSON.stringify(cart));
+  sessionStorage.setItem("cart", JSON.stringify(cart ? cart : []));
 }
 
 function renderProducts() {
@@ -24,7 +24,7 @@ function renderProducts() {
 
   products.forEach((product) => {
     const li = document.createElement("li");
-    li.textContent = `${product.name} - $${product.price} `;
+    li.textContent = `${product.name} - ${product.price} `;
 
     const btn = document.createElement("button");
     btn.textContent = "Add to Cart";
@@ -46,6 +46,7 @@ function renderCart() {
     li.textContent = `${item.name} - $${item.price}`;
     cartList.appendChild(li);
   });
+	saveCart(cart);
 }
 
 function addToCart(productId) {
@@ -57,7 +58,7 @@ function addToCart(productId) {
 }
 
 function clearCart() {
-  sessionStorage.setItem("cart", JSON.stringify([]));
+  saveCart([]);
   renderCart();
 }
 
