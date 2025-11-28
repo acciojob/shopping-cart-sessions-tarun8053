@@ -20,8 +20,6 @@ function saveCart(cart) {
 }
 
 function renderProducts() {
-  sessionStorage.removeItem("cart");  // ← FINAL FIX
-
   productList.innerHTML = "";
 
   products.forEach((product) => {
@@ -65,5 +63,6 @@ function clearCart() {
 
 clearBtn.addEventListener("click", clearCart);
 
+// Render products and cart on initial load
 renderProducts();
 renderCart();
