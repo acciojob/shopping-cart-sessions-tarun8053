@@ -11,8 +11,8 @@ const cartList = document.getElementById("cart-list");
 const clearBtn = document.getElementById("clear-cart-btn");
 
 function getCart() {
-  const saved = sessionStorage.getItem("cart");
-  return saved ? JSON.parse(saved) : [];
+  const saved = JSON.parse(sessionStorage.getItem("cart") ) || [];
+  return saved ;
 }
 
 function saveCart(cart) {
@@ -57,7 +57,7 @@ function addToCart(productId) {
 }
 
 function clearCart() {
-  sessionStorage.removeItem("cart");
+  sessionStorage.setItem("cart", JSON.stringify([]));
   renderCart();
 }
 
