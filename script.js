@@ -48,7 +48,7 @@ function renderCart() {
     li.textContent = `${item.name} - $${item.price}`;
     cartList.appendChild(li);
   });
-	// saveCart(cart);
+	saveCart(cart);
 }
 
 function addToCart(productId) {
