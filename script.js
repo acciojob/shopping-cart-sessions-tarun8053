@@ -33,6 +33,8 @@ function renderProducts() {
       addToCart(product.id);
     });
 
+	  btn.class = "add-to-cart-btn"
+
     li.appendChild(btn);
     productList.appendChild(li);
   });
@@ -46,7 +48,7 @@ function renderCart() {
     li.textContent = `${item.name} - $${item.price}`;
     cartList.appendChild(li);
   });
-	saveCart(cart);
+	// saveCart(cart);
 }
 
 function addToCart(productId) {
